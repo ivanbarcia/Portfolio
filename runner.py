@@ -1,12 +1,15 @@
+import yaml
 # This is the class that is creted to retrieve historical price, balance details, trade history with profit and loss, and live
 import binance_class
 from binance.client import Client
 import telegram_send
 
+config = yaml.safe_load(open("./config.yaml"))
+
 # All tickers contains all of the cryptocurrencies and its prices. We need this list in the class argument.
 # all_tickers list is created out of the class because the number of requests increases, so the error accurs.
-api_key = "g2e0SyiTftmGyBWBe2MIj4NJWbjR9O45rwu7RjhZCfG5qnGcMtrJmZJ5MiqddfW5"
-api_secret = "LpS8qi21NQumBJ7aFdUcGmjfWPDtCs8MSvtRuppXVPneee827pvsTogVt1hmVJiG"
+api_key = config['binance']['api_key']
+api_secret = config['binance']['api_secret']
 
 # Connect to Binance API
 client = Client(api_key, api_secret)
